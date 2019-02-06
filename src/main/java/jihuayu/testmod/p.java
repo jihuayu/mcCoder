@@ -6,9 +6,11 @@ import net.minecraft.item.Item;
 
 @RegItem("jjx")
 public class p extends Item {
-    public p(){
-        this.setRegistryName("ll");
-        this.setUnlocalizedName("ok");
-        this.setCreativeTab(CreativeTabs.FOOD);
+    public int a =1;
+    public void a(){
+        if(a==1)
+            return;
+        a=2;
+        return ;
     }
 }

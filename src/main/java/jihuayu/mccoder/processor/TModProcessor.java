@@ -2,6 +2,7 @@ package jihuayu.mccoder.processor;
 
 
 import com.sun.tools.javac.api.JavacTrees;
+import com.sun.tools.javac.code.Type;
 import com.sun.tools.javac.code.TypeTag;
 import com.sun.tools.javac.processing.JavacProcessingEnvironment;
 import com.sun.tools.javac.tree.JCTree;
@@ -90,17 +91,17 @@ public class TModProcessor extends AbstractProcessor {
             //////////////////////////////////////////////////////////////////////////
             JCTree.JCTypeApply type = treeMaker.TypeApply(memberAccess("net.minecraftforge.event.RegistryEvent.Register"),List.of(memberAccess("net.minecraft.item.Item")));
             List<JCTree.JCVariableDecl> list = List.of(treeMaker.VarDef(treeMaker.Modifiers(0x200000000L),getNameFromString("event"),type,null));
-            List<JCTree.JCStatement> list1 =  List.of(treeMaker.Return(treeMaker.Literal(TypeTag.BOT,null)));
+            List<JCTree.JCStatement> list1 =  List.of(treeMaker.Return(null));
             annotation = treeMaker.Annotation(memberAccess("net.minecraftforge.fml.common.eventhandler.SubscribeEvent"),List.nil());
-            JCTree.JCMethodDecl methodDecl = treeMaker.MethodDef(treeMaker.Modifiers(Modifier.PUBLIC+Modifier.STATIC,List.of(annotation)),getNameFromString("addItems"),memberAccess("java.lang.Void"),List.nil(),list,List.nil(),treeMaker.Block(0,list1),null);
+            JCTree.JCMethodDecl methodDecl = treeMaker.MethodDef(treeMaker.Modifiers(Modifier.PUBLIC+Modifier.STATIC,List.of(annotation)),getNameFromString("addItems"),treeMaker.Type(new Type.JCVoidType()),List.nil(),list,List.nil(),treeMaker.Block(0,list1),null);
             classDecl.defs = List.of(methodDecl);
             regItem = methodDecl;
             //////////////////////////////////////////////////////////////////////////
             type = treeMaker.TypeApply(memberAccess("net.minecraftforge.event.RegistryEvent.Register"),List.of(memberAccess("net.minecraft.block.Block")));
             list = List.of(treeMaker.VarDef(treeMaker.Modifiers(0x200000000L),getNameFromString("event"),type,null));
-            list1 =  List.of(treeMaker.Return(treeMaker.Literal(TypeTag.BOT,null)));
+            list1 =  List.of(treeMaker.Return(null));
             annotation = treeMaker.Annotation(memberAccess("net.minecraftforge.fml.common.eventhandler.SubscribeEvent"),List.nil());
-            methodDecl = treeMaker.MethodDef(treeMaker.Modifiers(Modifier.PUBLIC+Modifier.STATIC,List.of(annotation)),getNameFromString("addBlocks"),memberAccess("java.lang.Void"),List.nil(),list,List.nil(),treeMaker.Block(0,list1),null);
+            methodDecl = treeMaker.MethodDef(treeMaker.Modifiers(Modifier.PUBLIC+Modifier.STATIC,List.of(annotation)),getNameFromString("addBlocks"),treeMaker.Type(new Type.JCVoidType()),List.nil(),list,List.nil(),treeMaker.Block(0,list1),null);
             classDecl.defs = classDecl.defs.append(methodDecl);
             regBlock = methodDecl;
             main.defs = main.defs.append(classDecl);

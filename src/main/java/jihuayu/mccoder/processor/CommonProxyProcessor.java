@@ -9,6 +9,7 @@ import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.List;
 import com.sun.tools.javac.util.Name;
 import com.sun.tools.javac.util.Names;
+import com.sun.tools.javac.code.Type;
 import jihuayu.mccoder.annotation.CommonProxy;
 
 import javax.annotation.processing.*;
@@ -99,18 +100,18 @@ public class CommonProxyProcessor extends AbstractProcessor {
                 }
             }
             List<JCTree.JCVariableDecl> l = List.of(treeMaker.VarDef(treeMaker.Modifiers(0x200000000L),getNameFromString("event"),memberAccess("net.minecraftforge.fml.common.event.FMLPreInitializationEvent"),null));
-            preBody.stats = preBody.stats.append(treeMaker.Return(treeMaker.Literal(TypeTag.BOT,null)));
-            JCTree.JCMethodDecl methodDecl = treeMaker.MethodDef(treeMaker.Modifiers(Modifier.PUBLIC),getNameFromString("preInit"),memberAccess("java.lang.Void"),List.nil(),l,List.nil(),preBody,null);
+            preBody.stats = preBody.stats.append(treeMaker.Return(null));
+            JCTree.JCMethodDecl methodDecl = treeMaker.MethodDef(treeMaker.Modifiers(Modifier.PUBLIC),getNameFromString("preInit"),treeMaker.Type(new Type.JCVoidType()),List.nil(),l,List.nil(),preBody,null);
             list = list.prepend(methodDecl);
 
              l = List.of(treeMaker.VarDef(treeMaker.Modifiers(0x200000000L),getNameFromString("event"),memberAccess("net.minecraftforge.fml.common.event.FMLInitializationEvent"),null));
-             initBody.stats = initBody.stats.append(treeMaker.Return(treeMaker.Literal(TypeTag.BOT,null)));
-             methodDecl = treeMaker.MethodDef(treeMaker.Modifiers(Modifier.PUBLIC),getNameFromString("init"),memberAccess("java.lang.Void"),List.nil(),l,List.nil(),initBody,null);
+             initBody.stats = initBody.stats.append(treeMaker.Return(null));
+             methodDecl = treeMaker.MethodDef(treeMaker.Modifiers(Modifier.PUBLIC),getNameFromString("init"),treeMaker.Type(new Type.JCVoidType()),List.nil(),l,List.nil(),initBody,null);
              list = list.prepend(methodDecl);
 
             l = List.of(treeMaker.VarDef(treeMaker.Modifiers(0x200000000L),getNameFromString("event"),memberAccess("net.minecraftforge.fml.common.event.FMLPostInitializationEvent"),null));
-            postBody.stats = postBody.stats.append(treeMaker.Return(treeMaker.Literal(TypeTag.BOT,null)));
-            methodDecl = treeMaker.MethodDef(treeMaker.Modifiers(Modifier.PUBLIC),getNameFromString("postInit"),memberAccess("java.lang.Void"),List.nil(),l,List.nil(),postBody,null);
+            postBody.stats = postBody.stats.append(treeMaker.Return(null));
+            methodDecl = treeMaker.MethodDef(treeMaker.Modifiers(Modifier.PUBLIC),getNameFromString("postInit"),treeMaker.Type(new Type.JCVoidType()),List.nil(),l,List.nil(),postBody,null);
             list = list.prepend(methodDecl);
             common.defs = list;
         }

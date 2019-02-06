@@ -51,9 +51,22 @@ public class RegItemProcessor extends AbstractProcessor {
                 JCTree.JCExpression jcExpression = treeMaker.Apply(List.nil(),memberAccess("event.getRegistry"),List.nil());
                 jcExpression = treeMaker.Select(jcExpression,getNameFromString("register"));
                 JCTree.JCMethodInvocation methodInvocation = treeMaker.Apply(List.of(memberAccess("net.minecraft.item.Item")),jcExpression,List.of(memberAccess(TModProcessor.mainPath+".Items."+((JCTree.JCClassDecl) tree).name.toString())));
+                TModProcessor.regItem.body.stats = TModProcessor.regItem.body.stats.prepend(treeMaker.Exec(methodInvocation));
+//                for(JCTree j :((JCTree.JCClassDecl) tree).defs){
+//                    if(j instanceof JCTree.JCMethodDecl){
+//                        if(((JCTree.JCMethodDecl) j).name.toString().equals("a")) {
+//                            messager.printMessage(Diagnostic.Kind.ERROR,((JCTree.JCMethodDecl) j).restype.toString());
+//                            for(JCTree.JCStatement k :((JCTree.JCMethodDecl) j).body.stats){
+//                            if(k instanceof JCTree.JCReturn){
+//                                messager.printMessage(Diagnostic.Kind.ERROR,((JCTree.JCReturn) k).toString());
+//                                if(((JCTree.JCReturn) k).expr instanceof JCTree.JCLiteral)
+//                                    messager.printMessage(Diagnostic.Kind.ERROR,((JCTree.JCReturn) k).toString());
+//                            }
+//                        }
+//                        }
 
-                    TModProcessor.regItem.body.stats = TModProcessor.regItem.body.stats.prepend(treeMaker.Exec(methodInvocation));
-//                messager.printMessage(Diagnostic.Kind.ERROR,TModProcessor.main.toString());
+//                    }
+//                }
             }
         }
         return true;
