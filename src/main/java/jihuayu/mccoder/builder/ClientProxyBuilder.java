@@ -12,6 +12,7 @@ import java.util.List;
 
 public class ClientProxyBuilder {
     public static void build(){
+        Env.note("begin build ClientProxyBuilder");
         if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null){
             Env.error("ClientProxyBuilder null");
             return;
@@ -29,6 +30,8 @@ public class ClientProxyBuilder {
             BufferedWriter bw = new BufferedWriter(jfo.openWriter());
             vt.merge(vc, bw);
             bw.close();
+            Env.note("build ClientProxyBuilder");
+
         } catch (IOException e) {
             Env.error("ClientProxyBuilder");
             Env.error(e.getMessage());

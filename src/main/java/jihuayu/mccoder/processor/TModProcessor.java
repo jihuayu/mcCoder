@@ -43,7 +43,11 @@ public class TModProcessor extends AbstractProcessor {
 
     @Override
     public synchronized boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        if (roundEnv.processingOver()) return true;
+        if(roundEnv.processingOver()) {
+            Env.note(String.valueOf(Math.random()));
+            AllBuilder.build();
+            return true;
+        }
         Set<? extends Element> set = roundEnv.getElementsAnnotatedWith(TMod.class);
         if(set.size()!=1){
             return true;
@@ -55,8 +59,9 @@ public class TModProcessor extends AbstractProcessor {
                     if(j.annotationType.toString().equals("TMod")) {
                         for(JCTree.JCExpression k : j.args){
                             if(k instanceof JCTree.JCAssign) {
-                                if(((JCTree.JCAssign) k).rhs instanceof JCTree.JCLiteral)
+                                if(((JCTree.JCAssign) k).rhs instanceof JCTree.JCLiteral) {
                                     Env.modid = (String)((JCTree.JCLiteral) ((JCTree.JCAssign) k).rhs).value;
+                                }
                             }
                         }
                     }

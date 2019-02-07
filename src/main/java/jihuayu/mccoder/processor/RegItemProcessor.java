@@ -23,7 +23,9 @@ public class RegItemProcessor extends AbstractProcessor {
     private String regName ;
     @Override
     public synchronized boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        if (roundEnv.processingOver()) return true;
+        if(roundEnv.processingOver()) {
+            return true;
+        }
         Set<? extends Element> set = roundEnv.getElementsAnnotatedWith(RegItem.class);
         Set<? extends Element> set2 = roundEnv.getElementsAnnotatedWith(RegItems.class);
 
@@ -34,14 +36,13 @@ public class RegItemProcessor extends AbstractProcessor {
         for (Element i : set2) {
             regs(i);
         }
-        AllBuilder.build();
+
         return true;
     }
     private void regs(Element i){
         Env.note(i.asType().toString());
         JCTree tree = Env.trees.getTree(i);
         if (tree instanceof JCTree.JCClassDecl) {
-            Env.note(tree.toString());
             for (JCTree.JCAnnotation annotation : ((JCTree.JCClassDecl) tree).mods.annotations) {
                 Env.note(annotation.annotationType.toString());
                 if (annotation.annotationType.toString().equals("RegItem")) {

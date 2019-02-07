@@ -12,6 +12,8 @@ import java.util.List;
 
 public class ItemLoaderBuilder {
     public static void build(){
+        Env.note("begin build ItemLoaderBuilder");
+
         if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null){
             Env.error("ItemLoaderBuilder null");
             return;
@@ -36,6 +38,7 @@ public class ItemLoaderBuilder {
             BufferedWriter bw = new BufferedWriter(jfo.openWriter());
             vt.merge(vc, bw);
             bw.close();
+            Env.note("build ItemLoaderBuilder");
         } catch (IOException e) {
             Env.error("ItemLoaderBuilder");
             Env.error(e.getMessage());

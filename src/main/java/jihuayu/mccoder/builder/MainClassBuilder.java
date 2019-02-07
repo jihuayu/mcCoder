@@ -13,6 +13,7 @@ import java.util.List;
 
 public class MainClassBuilder {
     public static void build(){
+        Env.note("begin build MainClassBuilder");
         if(Env.libEnv==null||Env.mainClass==null||Env.modid==null||Env.mainPackage==null|| Env.filer==null){
             Env.error("MainClassBuilder null");
             return;
@@ -29,6 +30,8 @@ public class MainClassBuilder {
             BufferedWriter bw = new BufferedWriter(jfo.openWriter());
             vt.merge(vc, bw);
             bw.close();
+            Env.note("build MainClassBuilder");
+
         } catch (IOException e) {
             Env.error("MainClassBuilder");
             Env.error(e.getMessage());

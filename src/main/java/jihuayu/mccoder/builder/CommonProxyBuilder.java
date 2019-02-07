@@ -12,6 +12,8 @@ import java.util.List;
 
 public class CommonProxyBuilder {
     public static void build(){
+        Env.note("begin build CommonProxyBuilder");
+
         if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null){
             Env.error("CommonProxyBuilder null");
             return;
@@ -29,6 +31,8 @@ public class CommonProxyBuilder {
             BufferedWriter bw = new BufferedWriter(jfo.openWriter());
             vt.merge(vc, bw);
             bw.close();
+            Env.note("build CommonProxyBuilder");
+
         } catch (IOException e) {
             Env.error("CommonProxyBuilder");
             Env.error(e.getMessage());
