@@ -79,6 +79,9 @@ public class RegItemProcessor extends AbstractProcessor {
             Env.itemsDecl.put(regName,decl.toString());
             Env.items.put(regName,regName.toUpperCase());
         }
+        else{
+            Env.error("regName null");
+        }
     }
 }
 //TODO：传入名字不为字符串
