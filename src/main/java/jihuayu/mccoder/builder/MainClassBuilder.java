@@ -8,6 +8,8 @@ import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainClassBuilder {
     public static void build(){
@@ -17,7 +19,8 @@ public class MainClassBuilder {
         vc.put("modid","\""+Env.modid+"\"");
         vc.put("mainClass",Env.mainClass);
         vc.put("mainPackage",Env.mainPackage);
-        vc.put("import","");
+        List impor =  new ArrayList<String>();
+        vc.put("import",impor);
         try {
             JavaFileObject jfo = Env.filer.createSourceFile(Env.mainPackage+"."+Env.mainClass);
             BufferedWriter bw = new BufferedWriter(jfo.openWriter());

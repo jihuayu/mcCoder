@@ -7,14 +7,17 @@ import org.apache.velocity.VelocityContext;
 import javax.tools.JavaFileObject;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientProxyBuilder {
     public static void build(){
-        if(Env.libEnv==null||Env.mainClass==null||Env.modid==null||Env.mainPackage==null|| Env.filer==null)return;
+        if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null)return;
         Template vt = Env.libEnv.getTemplate("mccoder/client.vm");
         VelocityContext vc = new VelocityContext();
+        List impor =  new ArrayList<String>();
+        vc.put("import",impor);
         vc.put("mainPackage",Env.mainPackage);
-        vc.put("import","");
         vc.put("preInit","");
         vc.put("init","");
         vc.put("postInit","");

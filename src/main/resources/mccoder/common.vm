@@ -3,13 +3,17 @@ package ${mainPackage}.proxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import ${mainPackage}.loader.ItemLoader;
 
-${import}
+#foreach(${i} in ${import})
+import ${i};
+#end
 
 public class CommonProxy {
 
 public void preInit(FMLPreInitializationEvent event){
 ${preInit}
+new ItemLoader();
 }
 
 

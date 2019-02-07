@@ -10,19 +10,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommonProxyBuilder {
+public class ItemLoaderBuilder {
     public static void build(){
         if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null)return;
-        Template vt = Env.libEnv.getTemplate("mccoder/common.vm");
+        Template vt = Env.libEnv.getTemplate("mccoder/itemLoader.vm");
         VelocityContext vc = new VelocityContext();
         vc.put("mainPackage",Env.mainPackage);
+        List items = new ArrayList<String>();
+        List itemsDecl = new ArrayList<String>();
+        for(String i :Env.items.keySet()){
+            items.add(Env.items.get(i));
+        }
+        for(String i :Env.itemsDecl.keySet()){
+            itemsDecl.add(Env.itemsDecl.get(i));
+        }
         List impor =  new ArrayList<String>();
         vc.put("import",impor);
-        vc.put("preInit","");
-        vc.put("init","");
-        vc.put("postInit","");
+        vc.put("items",items);
+        vc.put("itemsDecl",itemsDecl);
         try {
-            JavaFileObject jfo = Env.filer.createSourceFile(Env.mainPackage+"."+"proxy.CommonProxy");
+            JavaFileObject jfo = Env.filer.createSourceFile(Env.mainPackage+"."+"loader.ItemLoader");
             BufferedWriter bw = new BufferedWriter(jfo.openWriter());
             vt.merge(vc, bw);
             bw.close();

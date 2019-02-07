@@ -9,9 +9,8 @@ import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.List;
 import com.sun.tools.javac.util.Names;
 import jihuayu.mccoder.Env;
-import jihuayu.mccoder.annotation.ClientProxy;
-import jihuayu.mccoder.annotation.CommonProxy;
 import jihuayu.mccoder.annotation.TMod;
+import jihuayu.mccoder.builder.AllBuilder;
 import jihuayu.mccoder.builder.ClientProxyBuilder;
 import jihuayu.mccoder.builder.CommonProxyBuilder;
 import jihuayu.mccoder.builder.MainClassBuilder;
@@ -107,9 +106,6 @@ public class TModProcessor extends AbstractProcessor {
                 Env.messager.printMessage(Diagnostic.Kind.ERROR,i.toString());
             }
         }
-        MainClassBuilder.build();
-        ClientProxyBuilder.build();
-        CommonProxyBuilder.build();
         return true;
     }
 }

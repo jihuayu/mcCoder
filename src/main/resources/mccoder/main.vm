@@ -11,7 +11,9 @@ import org.apache.logging.log4j.Logger;
 
 import ${mainPackage}.proxy.*;
 
-${import}
+#foreach(${i} in ${import})
+import ${i};
+#end
 
 @Mod(modid = ${modid})
 public class ${mainClass} {

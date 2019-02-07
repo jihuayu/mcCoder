@@ -7,6 +7,8 @@ import org.apache.velocity.app.VelocityEngine;
 
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class Env {
@@ -15,13 +17,19 @@ public class Env {
     public static TreeMaker treeMaker;
     public static Names names;
     public static Filer filer;
-    public static String userPath;
-    public static String resPath;
+
     public static Properties props;
+
     public static String modid;
     public static String mainClass;
     public static String mainPackage;
 
+    public static String userPath;
+    public static String resPath;
     public static VelocityEngine modEnv;
     public static VelocityEngine libEnv;
+
+    public static Map<String,String>items = new HashMap<>();
+    public static Map<String,String>itemsDecl = new HashMap<>();
+
 }
