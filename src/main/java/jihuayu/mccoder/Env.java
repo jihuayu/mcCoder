@@ -7,11 +7,14 @@ import org.apache.velocity.app.VelocityEngine;
 
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
+import javax.tools.Diagnostic;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 public class Env {
+    public static final boolean ISDEBUG = true;
+
     public static Messager messager;
     public static JavacTrees trees;
     public static TreeMaker treeMaker;
@@ -32,4 +35,11 @@ public class Env {
     public static Map<String,String>items = new HashMap<>();
     public static Map<String,String>itemsDecl = new HashMap<>();
 
+    public static void error(String str){
+        messager.printMessage(Diagnostic.Kind.ERROR,str);
+    }
+    public static void note(String str){
+        if(ISDEBUG)
+            messager.printMessage(Diagnostic.Kind.NOTE,str);
+    }
 }

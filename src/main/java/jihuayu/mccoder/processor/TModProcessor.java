@@ -67,7 +67,7 @@ public class TModProcessor extends AbstractProcessor {
         try {
             if (Env.modid == null) return true;
             Properties props = new Properties();
-            Env.messager.printMessage(Diagnostic.Kind.NOTE, "file:///" + System.getProperty("user.home").replace("\\", "/") + "/.mccoder/" + Env.modid + "/mccoder.properties");
+            Env.note("file:///" + System.getProperty("user.home").replace("\\", "/") + "/.mccoder/" + Env.modid + "/mccoder.properties");
             URL url = new URL("file:///" + System.getProperty("user.home").replace("\\", "/") + "/.mccoder/" + Env.modid + "/mccoder.properties");
             props.load(url.openStream());
             Env.props = props;
@@ -75,17 +75,17 @@ public class TModProcessor extends AbstractProcessor {
             String mainClass = props.getProperty("mainClass");
             if (mainClass != null) {
                 Env.mainClass = mainClass;
-                Env.messager.printMessage(Diagnostic.Kind.NOTE, mainClass);
+                Env.note(mainClass);
             }
             String mainPackage = props.getProperty("mainPackage");
             if (mainPackage != null) {
                 Env.mainPackage = mainPackage;
-                Env.messager.printMessage(Diagnostic.Kind.NOTE, mainPackage);
+                Env.note(mainPackage);
             }
             String resPath = props.getProperty("resPath");
             if (resPath != null) {
                 Env.resPath = resPath;
-                Env.messager.printMessage(Diagnostic.Kind.NOTE, resPath);
+                Env.note(resPath);
             }
             ///////////////////////////////////////////////////////////////////
             props = new Properties();
@@ -101,9 +101,9 @@ public class TModProcessor extends AbstractProcessor {
             Env.modEnv = new VelocityEngine(props);
             Env.modEnv.init();
         } catch (IOException e) {
-            Env.messager.printMessage(Diagnostic.Kind.ERROR,"worry");
+            Env.error("worry");
             for(StackTraceElement i :e.getStackTrace()){
-                Env.messager.printMessage(Diagnostic.Kind.ERROR,i.toString());
+                Env.error(i.toString());
             }
         }
         return true;
