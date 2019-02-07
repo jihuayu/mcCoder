@@ -12,7 +12,10 @@ import java.util.List;
 
 public class ItemLoaderBuilder {
     public static void build(){
-        if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null)return;
+        if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null){
+            Env.error("ItemLoaderBuilder null");
+            return;
+        }
         Template vt = Env.libEnv.getTemplate("mccoder/itemLoader.vm");
         VelocityContext vc = new VelocityContext();
         vc.put("mainPackage",Env.mainPackage);
@@ -34,7 +37,8 @@ public class ItemLoaderBuilder {
             vt.merge(vc, bw);
             bw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Env.error("ItemLoaderBuilder");
+            Env.error(e.getMessage());
         }
     }
 }

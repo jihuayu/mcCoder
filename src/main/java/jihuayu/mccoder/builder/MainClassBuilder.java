@@ -13,7 +13,10 @@ import java.util.List;
 
 public class MainClassBuilder {
     public static void build(){
-        if(Env.libEnv==null||Env.mainClass==null||Env.modid==null||Env.mainPackage==null|| Env.filer==null)return;
+        if(Env.libEnv==null||Env.mainClass==null||Env.modid==null||Env.mainPackage==null|| Env.filer==null){
+            Env.error("MainClassBuilder null");
+            return;
+        }
         Template vt = Env.libEnv.getTemplate("mccoder/main.vm");
         VelocityContext vc = new VelocityContext();
         vc.put("modid","\""+Env.modid+"\"");
@@ -27,7 +30,8 @@ public class MainClassBuilder {
             vt.merge(vc, bw);
             bw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Env.error("MainClassBuilder");
+            Env.error(e.getMessage());
         }
     }
 }

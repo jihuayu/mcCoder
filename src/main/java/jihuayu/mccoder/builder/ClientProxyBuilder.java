@@ -12,7 +12,10 @@ import java.util.List;
 
 public class ClientProxyBuilder {
     public static void build(){
-        if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null)return;
+        if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null){
+            Env.error("ClientProxyBuilder null");
+            return;
+        }
         Template vt = Env.libEnv.getTemplate("mccoder/client.vm");
         VelocityContext vc = new VelocityContext();
         List impor =  new ArrayList<String>();
@@ -27,7 +30,9 @@ public class ClientProxyBuilder {
             vt.merge(vc, bw);
             bw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Env.error("ClientProxyBuilder");
+            Env.error(e.getMessage());
+
         }
     }
 }

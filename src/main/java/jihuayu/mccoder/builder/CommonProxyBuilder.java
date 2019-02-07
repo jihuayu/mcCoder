@@ -12,7 +12,10 @@ import java.util.List;
 
 public class CommonProxyBuilder {
     public static void build(){
-        if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null)return;
+        if(Env.libEnv==null||Env.mainPackage==null|| Env.filer==null){
+            Env.error("CommonProxyBuilder null");
+            return;
+        }
         Template vt = Env.libEnv.getTemplate("mccoder/common.vm");
         VelocityContext vc = new VelocityContext();
         vc.put("mainPackage",Env.mainPackage);
@@ -27,7 +30,9 @@ public class CommonProxyBuilder {
             vt.merge(vc, bw);
             bw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Env.error("CommonProxyBuilder");
+            Env.error(e.getMessage());
+
         }
     }
 }
