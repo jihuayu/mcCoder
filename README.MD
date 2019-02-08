@@ -47,3 +47,20 @@ public class ItemA extends Item {
 - 如果有其他问题可以给我发`issues`，或者加我的qq`8042833`
 
 - `files`文件夹中有每天的程序归档;`libs`文件夹中运行所需要的库,请全部添加依赖。
+
+## 使用自动本地化功能
+
+- 在资源文件夹新建文件`mccoder.properties`，写下如下内容：
+
+```PROPERTIES
+modid=testmod
+```
+
+- 进入游戏，这时候本地化的词条已经生成在了`lang/en_us.lang`文件中
+
+
+- 单独使用此功能请下载`withmixin`版本，或者加入依赖`mixin-0.7.11-SNAPSHOT.jar`，其他依赖可以不用。
+
+- 此功能不需要开启`annotation processing`，如果没有添加全所有依赖，请不要开启`annotation processing`。
+
+- **可以被自动生成的词条需要满足非本地化名字中带有`modid:`,请务必注意.**
