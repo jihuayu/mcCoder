@@ -9,5 +9,6 @@ public class AllBuilder {
         ClientProxyBuilder.build();
         CommonProxyBuilder.build();
         ItemLoaderBuilder.build();
+        I18nBuilder.build();
     }
 }

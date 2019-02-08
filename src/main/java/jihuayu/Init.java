@@ -1,15 +1,17 @@
+package jihuayu;
+
 import org.lwjgl.Sys;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.Properties;
 
 
 public class Init {
     public static String mainPath;
+    public static Properties props = new Properties();
+    public static String path;
+    public static String modid = "";
     public static void main(String[] args){
 
         try {
@@ -17,15 +19,22 @@ public class Init {
             if(!file.exists()) {
                 file.mkdir();
             }
-            Properties props = new Properties();
             file = new File(System.getProperty("user.dir"));
-            String path = find(file)+"/main/resources";
+            if(find(file).equals("")){
+                System.exit(1);
+            }
+            path = find(file)+"/main/resources";
             mainPath = path;
             path = path.replace("\\","/");
+            FileWriter writer = new FileWriter(new File(path + "/mccoder.properties"), true);
+            writer.close();
+            if(!new File(path+"/mccoder").exists()){
+                new File(path+"/mccoder").mkdir();
+            }
             URL url = new URL("file:///" + path+"/mccoder.properties");
             props.load(url.openStream());
-            String modid = props.getProperty("modid");
-            if(modid!=null){
+            modid = props.getProperty("modid","");
+            if(!modid.equals("")){
                 copyDir(path+"/mccoder",System.getProperty("user.home").replace("\\","/")+"/.mccoder/"+modid);
                 copyFile(path+"/mccoder.properties",System.getProperty("user.home").replace("\\","/")+"/.mccoder/"+modid+"/mccoder.properties");
             }

@@ -26,14 +26,17 @@ public class Env {
     public static String modid;
     public static String mainClass;
     public static String mainPackage;
+    public static String resPath;
 
     public static String userPath;
-    public static String resPath;
+
     public static VelocityEngine modEnv;
     public static VelocityEngine libEnv;
 
     public static Map<String,String>items = new HashMap<>();
     public static Map<String,String>itemsDecl = new HashMap<>();
+
+    public static Map<String,String>I18n = new HashMap<>();
 
     public static void error(String str){
         messager.printMessage(Diagnostic.Kind.ERROR,str);

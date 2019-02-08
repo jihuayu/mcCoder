@@ -1,2 +1,3 @@
 jihuayu.mccoder.processor.TModProcessor
 jihuayu.mccoder.processor.RegItemProcessor
+jihuayu.mccoder.processor.I18nProcessor

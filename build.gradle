@@ -2,16 +2,18 @@ buildscript {
     repositories {
         jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url "http://repo.spongepowered.org/maven" }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath "org.spongepowered:mixingradle:0.6-SNAPSHOT"
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: "org.spongepowered.mixin"
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-
-version = "190207"
+version = "0.2.0-19.02.07"
 group = "jihuayu"
 archivesBaseName = "mccoder"
 
@@ -23,6 +25,7 @@ compileJava {
 minecraft {
     version = "1.12.2-14.23.5.2768"
     runDir = "run"
+    coreMod = "jihuayu.mccoder.LoadingPlugin"
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
     // stable_#            stables are built at the discretion of the MCP team.
@@ -31,9 +34,21 @@ minecraft {
     mappings = "snapshot_20171003"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
-
+repositories{
+    maven { url = 'http://repo.spongepowered.org/maven'}
+    maven { url "http://www.dimdev.org/maven" }
+}
 dependencies {
     compile fileTree(dir: 'libs', includes: ['*.jar'])
+    compile('org.dimdev:mixin:0.7.11-SNAPSHOT'){
+        exclude module: "asm-commons"
+        exclude module: "asm-tree"
+        exclude module: "launchwrapper"
+        exclude module: "guava"
+        exclude module: "log4j-core"
+        exclude module: "gson"
+        exclude module: "commons-io"
+    }
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
@@ -75,7 +90,16 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+mixin {
+    add sourceSets.main, "mixins.mccoder.refmap.json"
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
+}
+
+jar {
+    manifest {
+        attributes 'FMLAT': 'mccoder_at.cfg'
+    }
 }
