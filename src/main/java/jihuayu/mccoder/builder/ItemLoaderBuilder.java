@@ -29,8 +29,8 @@ public class ItemLoaderBuilder {
         for(String i :Env.itemsDecl.keySet()){
             itemsDecl.add(Env.itemsDecl.get(i));
         }
-        List impor =  new ArrayList<String>();
-        vc.put("import",impor);
+        vc.put("import",Env.importList);
+
         vc.put("items",items);
         vc.put("itemsDecl",itemsDecl);
         try {

@@ -19,8 +19,7 @@ public class ClientProxyBuilder {
         }
         Template vt = Env.libEnv.getTemplate("mccoder/client.vm");
         VelocityContext vc = new VelocityContext();
-        List impor =  new ArrayList<String>();
-        vc.put("import",impor);
+        vc.put("import",Env.importList);
         vc.put("mainPackage",Env.mainPackage);
         vc.put("preInit","");
         vc.put("init","");

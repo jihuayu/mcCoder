@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: "org.spongepowered.mixin"
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = "0.2.0-19.02.07"
+version = "0.2.0-19.02.08"
 group = "jihuayu"
 archivesBaseName = "mccoder"
 

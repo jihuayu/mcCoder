@@ -21,8 +21,8 @@ public class CommonProxyBuilder {
         Template vt = Env.libEnv.getTemplate("mccoder/common.vm");
         VelocityContext vc = new VelocityContext();
         vc.put("mainPackage",Env.mainPackage);
-        List impor =  new ArrayList<String>();
-        vc.put("import",impor);
+        vc.put("import",Env.importList);
+
         vc.put("preInit","");
         vc.put("init","");
         vc.put("postInit","");

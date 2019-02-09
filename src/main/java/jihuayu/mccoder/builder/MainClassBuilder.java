@@ -23,8 +23,7 @@ public class MainClassBuilder {
         vc.put("modid","\""+Env.modid+"\"");
         vc.put("mainClass",Env.mainClass);
         vc.put("mainPackage",Env.mainPackage);
-        List impor =  new ArrayList<String>();
-        vc.put("import",impor);
+        vc.put("import",Env.importList);
         try {
             JavaFileObject jfo = Env.filer.createSourceFile(Env.mainPackage+"."+Env.mainClass);
             BufferedWriter bw = new BufferedWriter(jfo.openWriter());

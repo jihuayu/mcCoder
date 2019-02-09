@@ -7,7 +7,8 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "I18n_mixin",
-    "I18nOld_mixin"
+    "I18nOld_mixin",
+    "ForgeRegistry_mixin"
   ],
   "client": [],
   "injectors": {

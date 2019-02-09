@@ -2,7 +2,6 @@ package jihuayu.mccoder;
 
 
 import jihuayu.Init;
-import net.minecraft.client.resources.I18n;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.launch.MixinBootstrap;

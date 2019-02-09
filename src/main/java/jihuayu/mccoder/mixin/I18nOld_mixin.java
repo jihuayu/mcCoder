@@ -1,10 +1,8 @@
 package jihuayu.mccoder.mixin;
 
-import com.google.common.collect.Maps;
 import jihuayu.Init;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.util.text.translation.LanguageMap;
-import org.lwjgl.Sys;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -12,7 +10,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 
 @Mixin(I18n.class)
 public class I18nOld_mixin {
