@@ -24,7 +24,7 @@ public class JsLoader {
             }
         });
     }
-    public static void main(String[]args){
-        loadScript();
-    }
+//    public static void main(String[]args){
+//        loadScript();
+//    }
 }
